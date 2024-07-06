@@ -56,12 +56,12 @@ function CreateOrder() {
           <label className="sm:basis-40">Phone number</label>
           <div className="grow">
             <input className="input w-full" type="tel" name="phone" required />
-
-            {formErrors?.phone && (
-              <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
-                {formErrors.phone}
-              </p>
-            )}
+         
+          {formErrors?.phone && (
+            <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+              {formErrors.phone}
+            </p>
+          )}
           </div>
         </div>
 
@@ -113,14 +113,14 @@ export async function action({ request }) {
   };
 
   const errors = {};
-  if (isValidPhone(order.phone)) {
+  if (!isValidPhone(order.phone)) {
     errors.phone =
       "Please provide your correct phone number. We need it to contact you";
   }
 
   if (Object.keys(errors).length > 0) return errors;
 
-  console.log(data);
+  // console.log(data);
 
   // If everything is okay, create new order and redirect
   const newOrder = await createOrder(order);
